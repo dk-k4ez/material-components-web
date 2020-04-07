@@ -229,6 +229,35 @@
       width: 100%;
     }
   }
+
+  .mdc-data-table__pagination {
+    @include typography-mixins.typography(body2, $query: $query);
+
+    @include feature-targeting-mixins.targets($feat-structure) {
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+
+  .mdc-data-table__pagination-trailing {
+    @include feature-targeting-mixins.targets($feat-structure) {
+      align-items: center;
+      display: flex;
+    }
+  }
+
+  .mdc-data-table__pagination-button {
+    @include feature-targeting-mixins.targets($feat-structure) {
+      @include rtl-mixins.reflexive-box(margin, right, 4px);
+      @include icon-button-mixins.flip-icon-in-rtl();
+    }
+  }
+
+  .mdc-data-table__pagination-status-label {
+    @include feature-targeting-mixins.targets($feat-structure) {
+      @include rtl-mixins.reflexive-box(margin, right, 36px);
+    }
+  }
 }
 
 /// Sets the color of sort icon button when it is in idle state.
@@ -301,7 +330,8 @@
 @mixin divider-color($color, $query: feature-targeting-functions.all()) {
   $feat-color: feature-targeting-functions.create-target($query, color);
 
-  .mdc-data-table__row {
+  .mdc-data-table__row,
+  .mdc-data-table__pagination {
     @include feature-targeting-mixins.targets($feat-color) {
       border-top-color: $color;
     }
@@ -311,7 +341,8 @@
 @mixin divider-size($size, $query: feature-targeting-functions.all()) {
   $feat-structure: feature-targeting-functions.create-target($query, structure);
 
-  .mdc-data-table__row {
+  .mdc-data-table__row,
+  .mdc-data-table__pagination {
     @include feature-targeting-mixins.targets($feat-structure) {
       border-top-width: $size;
       border-top-style: solid;
@@ -390,7 +421,8 @@
 @mixin cell-height($height, $query: feature-targeting-functions.all()) {
   $feat-structure: feature-targeting-functions.create-target($query, structure);
 
-  .mdc-data-table__cell {
+  .mdc-data-table__cell,
+  .mdc-data-table__pagination {
     @include feature-targeting-mixins.targets($feat-structure) {
       height: $height;
     }
